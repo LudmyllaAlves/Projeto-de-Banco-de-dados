@@ -1,0 +1,25 @@
+﻿create table nome_da_tabela(
+pk_cliente serial primary key,    /* serial = int auto increment  -  primary key = indica que é uma chave primária */ 
+nome varchar(60) not null,        /* not null = obriga que o campo não seja nulo */
+cpf char (11) unique,             /* unique (constraint) = indica que não pode cadastrar outro igual */
+nascimento date,                  /* Date  = indica data */
+limite decimal (10,2)             /* decimal */ 
+)
+
+select *
+from nome_da_tabela 
+
+insert into nome_da_tabela(       /* inserir valores nas colunas da tabela*/
+nome, cpf, nascimento, limite)
+values('João Bobão','666','03-11-1999', 6660.69)     >>> Exemplo <<<
+
+
+alter table nome_da_tabela add column endereco varchar(60)  >>> Exemplo <<< /* alterar coluna da tabela */
+
+alter table cliente drop column endereco >>>Exemplo <<<                     /* remover coluna da tabela */
+
+update cliente set 	nascimente = '01-02-1993'  >>>Exemplo <<<
+			limite = 10.95		   >>>Exemplo <<<
+			where pk_cliente = 1       >>>Exemplo <<<
+
+Drop Table nome_da_tabela                                                   /* exclui a tabela */

@@ -1,0 +1,1 @@
+﻿select * from produto order by pk_produto   

@@ -1,0 +1,71 @@
+﻿-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+create table nome_da_tabela(
+pk_nome serial primary key,    /* serial = int auto increment  -  primary key = indica que é uma chave primária */ 
+nome varchar(60) not null,        /* not null = obriga que o campo não seja nulo */
+cpf char (11) unique,             /* unique (constraint) = indica que não pode cadastrar outro igual */
+nascimento date,                  /* Date  = indica data */
+limite decimal (10,2)             /* decimal */ 
+)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+select *
+from nome_da_tabela 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+select nome_exemplo_da_coluna, nome_exemplo_da_coluna2							/* selecionar coluna especifica */
+from nome_da_tabela
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+insert into nome_da_tabela(       /* inserir valores nas colunas da tabela*/
+nome, cpf, nascimento, limite)
+values('João Bobão','666','03-11-1999', 6660.69)     >>> Exemplo <<<
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+alter table nome_da_tabela add column exemplo_coluna varchar(60)  >>> Exemplo <<< /* alterar coluna da tabela */
+
+alter table cliente drop column exemplo_coluna >>>Exemplo <<<                     /* remover coluna da tabela */
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+update nome_da_tabela set 	nascimente = '01-02-1993'  >>>Exemplo <<<	update nome_da_tabela set 	nascimente = '01-02-1993'
+				limite = 10.95									limite = 10.95
+		      where     pk_cliente = 1 or      	   >>>Exemplo <<<	where not(pk_cliente = 1 or	
+				pk_cliente = 2		   >>>Exemplo <<<		  pk_cliente = 2)	/* update aonde não é o que está entre parenteses*/
+---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---  
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Drop Table nome_da_tabela                                                   /* exclui a tabela */
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+order by item1, item2(se quiser)                                            /* ordenar tabela */
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+fk_nome, 								    /* fk = chave estrangeira */
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		/* Restrição(Constraint) de chave estrangeira = Ligar as tabelas */ 
+foreign key (fk_exemplo) references nome_da_tabela(pk_exemplo) 			    /* O gatilho é ativado na tabela referenciada */ 
+	on delete set null on update cascade				    
+									    /* "set null" = Coloca 'null' no lugar da chave estrangeira;             */
+									    /* "cascade" = Faz com a ação aconteça em todas as linhas relacionadas;  */
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					  Restriçao em conjunto (onicidade composta):
+unique (ddd, numero) 					>>> Exemplo <<<
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+join > juntar as duas tabelas
+inner join > mostra quando as duas estão presentes 	V V				select nome,salario, descricao, gratificacao      >>> Exemplo <<<	
+left outer join >  Privilégio à tabela a esquerda	V F				from funcionario join cargo on
+right outer join > Privilégio à tabela a direita 	F V				pk_cargo = fk_cargo 
+full outer join > Mostra a bagaça toda 			V/F V/F
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		Alterar dados, criar tabela, e mudar o nome dela no (select)
+select coluna_exemplo+50 nome_exemplo						>>>Operação binaria exemplo / Nome na frente pra dar nome para a tabela criada<<<
+from tabela_exemplo
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+select sexo, count(*) 	>>> Exemplo <<<			
+from cliente		
+group by sexo				
+					/ todas as colunas que não tiverem uma funçao agregadora associada devem aparecer na causula "group by" / 
+
+---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---
+
+count 				// contar quantidade de linhas //    -Não necessita indicar a coluna-
+sum (coluna_exemplo) 		// soma // 
+avg (coluna_exemplo)		// media //
+max (coluna_exemplo)		// maior dentro de...//
+min (coluna_exemplo) 		// menor dentro de...//
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
